@@ -11,42 +11,42 @@ global.bruhdash = {
 
   // returns the first element of an array
   first: function (arrParam) {
-    console.log(arrParam.join(" , "));
+    //console.log(arrParam.join(" , "));
     return arrParam[0];
   },
 
   // returns the last element of an array
   last: function (arrParam) {
-    console.log(arrParam.join(" , "));
+    //console.log(arrParam.join(" , "));
     return arrParam[arrParam.length - 1];
   },
 
   // returns the index of the first matching element from left to right
   indexOf: function (arrParam, valParam) {
-    console.log(arrParam.join(" , "));
-    console.log(valParam);
+    //console.log(arrParam.join(" , "));
+    //console.log(valParam);
     var found = arrParam.indexOf(valParam);
     return found;
   },
 
   // returns the index of the first matching element from right to left
   lastIndexOf: function (arrParam, valParam) {
-    console.log(arrParam.join(" , "));
-    console.log(valParam);
+    //console.log(arrParam.join(" , "));
+    //console.log(valParam);
     var found = arrParam.lastIndexOf(valParam);
     return found;
   },
 
   // returns an array with all elements except for the last element
   initial: function (arrParam) {
-    console.log(arrParam.join(" , "));
+    //console.log(arrParam.join(" , "));
     arrParam.pop();
     return arrParam;
   },
   
   // returns an array with all falsey values removed
   compact: function (arrParam) {
-    console.log(arrParam.join(" , "));
+    //console.log(arrParam.join(" , "));
     var falseValues = [
       false, null, 0, "", undefined, NaN
     ];
@@ -70,17 +70,17 @@ global.bruhdash = {
 
   // creates a slice of an array from the start index up to but not including the end index
   slice: function (arrParam, startParam, endParam) {
-    console.log(arrParam.join( " , "));
-    console.log(startParam);
-    console.log(endParam);
+    //console.log(arrParam.join( " , "));
+    //console.log(startParam);
+    //console.log(endParam);
     var result = arrParam.slice(startParam, endParam);
     return result;
   },
 
   // returns a slice of array with n elements dropped from the beignning
   drop: function(arrParam, numParam){
-    console.log(arrParam);
-    console.log(numParam);
+    //console.log(arrParam);
+    //console.log(numParam);
     if (numParam === undefined)
     {
       arrParam.shift();
@@ -94,8 +94,8 @@ global.bruhdash = {
 
   // returns a slice of array with n elements dropped from the end
   dropRight: function(arrParam, numParam) {
-    console.log(arrParam);
-    console.log(numParam);
+    //console.log(arrParam);
+    //console.log(numParam);
     if (numParam === undefined)
     {
       arrParam.pop();
@@ -109,8 +109,8 @@ global.bruhdash = {
 
   // creates a slice of an array with n elements taken from the beginning
   take: function (arrParam, numParam) {
-    console.log(arrParam);
-    console.log(numParam);
+    //console.log(arrParam);
+    //console.log(numParam);
     var results = [];
     if (numParam === undefined){
       results = arrParam.slice(0,1);
@@ -122,8 +122,8 @@ global.bruhdash = {
 
   // creates a slice of an array with n elements taken from the end
   takeRight: function (arrParam, numParam) {
-    console.log(arrParam);
-    console.log(numParam);
+    //console.log(arrParam);
+    //console.log(numParam);
     var results = [];
     if (numParam === undefined){
       results = arrParam.slice(arrParam.length - 1, arrParam.length);
@@ -136,31 +136,41 @@ global.bruhdash = {
   // fills elements of array with specified value from the start index
   // up to but not including the end index
   fill: function(arrParam, valParam, startParam, endParam){
-    console.log(arrParam);
-    console.log(valParam);
-    console.log(startParam);
-    console.log(endParam);
+    //console.log(arrParam);
+    //console.log(valParam);
+    //console.log(startParam);
+    //console.log(endParam);
     var results = arrParam.fill(valParam, startParam, endParam);
     return results; 
   },
 
   // removes all given values from an array
-  /** 
-  pull: function (arrParam, valParam) {
-    console.log(arrParam);
-    console.log(valParam);
-    var valIndex = 0;
-    var result;
-    while (valIndex !== -1){
-      valIndex = arrParam.findIndex(valParam);
-      result = arrParam.splice(valIndex, 1);
+  pull: function (arrParam, valParam, valParam2) {
+    //console.log(arrParam);   Is A, B, C
+    //console.log(valParam);  Is A
+    //console.log(valParam2);  Is B
+    var valIndex;
+    function isSame(element){
+      return element === valParam || element === valParam2;
     }
-    return result;
-  },*/
+    do {
+      valIndex = arrParam.findIndex(isSame);
+      console.log(valIndex);
+      if (valIndex !== -1){
+      arrParam.splice(valIndex, 1);
+      }
+    } while (valIndex !== -1)
+    return arrParam;
+  },
 
   // removes elements of an array corresponding to the given indices
-  pullAt: function () {
-
+  pullAt: function (arr1, arr2) {
+    var results;
+    for (var count = 0; count < arr1.length; count++){
+      if (arr2.includes(count)){
+        
+      }
+    }
   },
 
   // creates an array excluding all the specified values
