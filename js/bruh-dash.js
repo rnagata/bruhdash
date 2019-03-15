@@ -155,7 +155,6 @@ global.bruhdash = {
     }
     do {
       valIndex = arrParam.findIndex(isSame);
-      console.log(valIndex);
       if (valIndex !== -1){
       arrParam.splice(valIndex, 1);
       }
@@ -165,22 +164,49 @@ global.bruhdash = {
 
   // removes elements of an array corresponding to the given indices
   pullAt: function (arr1, arr2) {
-    var results;
-    for (var count = 0; count < arr1.length; count++){
-      if (arr2.includes(count)){
-        
+    results = [];
+    // for each element of arr2, push the value contained at the specified
+    // element of arr1 into results. 
+    arr2.forEach(
+      function (element) {
+        results.push(arr1[element]);
       }
-    }
+    )
+    return results;
   },
 
   // creates an array excluding all the specified values
-  without: function() {
-
+  without: function(arr, val1, val2) {
+    newArr = [];
+    for (var i = 0; i < arr.length; i++){
+      // if the value of that element is not equal to value1 and value2
+      if ((arr[i] !== val1) && (arr[i] !== val2)) {
+       newArr.push(arr[i]);
+      }
+    }
+    return newArr;
   },
 
   // returns an array with specified values excluded
-  difference: function() {
-
+  difference: function(arr1, arr2) {
+    var indexOfNum = 0;
+    // for each element of the exclusion array
+    for (var i = 0; i < arr2.length; i++){
+      // do this check at least once and continue doing it until the
+      // given condition evaluates to false. in this case we want 
+      // indexOf to give a variable a -1, indicating that no more 
+      // elements can be found in arr1 containing the value specified by
+      // the current element of arr2.
+      do {
+        // update indexOfNum for that execution
+        indexOfNum = arr1.indexOf(arr2[i]);
+        // if indexOfNum hasn't been given -1
+        if (indexOfNum !== -1){
+          arr1.splice(indexOfNum, 1);
+        }
+      } while (indexOfNum !== -1)
+    }
+    return arr1;
   },
 
   /*******************
